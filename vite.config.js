@@ -5,13 +5,13 @@ import FullReload from 'vite-plugin-full-reload';
 
 export default defineConfig(({ command }) => {
   return {
+    base: '/portfolio/',
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
     build: {
       sourcemap: true,
-
       rollupOptions: {
         input: glob.sync('./src/*.html'),
         output: {
@@ -24,6 +24,7 @@ export default defineConfig(({ command }) => {
         },
       },
       outDir: '../dist',
+      emptyOutDir: true,
     },
     plugins: [
       injectHTML({
